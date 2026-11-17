@@ -509,6 +509,12 @@ nav a.l{white-space:nowrap}
 .psteps input{accent-color:var(--gold);margin-top:3px}
 .psteps input:checked+span{text-decoration:line-through;color:#8ea2b6}
 .ps .pa{display:flex;flex-wrap:wrap;justify-content:center;gap:3px;margin-top:6px;font-family:var(--sans)}.ps .pa .who{font-size:.66rem;padding:2px 8px}.who.bot{--c:#4f6377;background:#3a4b5c;color:#dfe6ee}
+.ps{cursor:pointer}.ps:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.35)}.ps:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.circhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.circhead h3{margin:0}.circsec{scroll-margin-top:20px}.circsec:not([hidden]){animation:tabin .4s ease both}
+#eq-plan .bfoot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px}
+.pl-sep{width:1px;height:22px;background:var(--line);margin:0 6px}
+.hlb.who-f.pq.on{background:var(--pq);border-color:var(--pq)}.hlb.who-f.pl.on{background:var(--pl);border-color:var(--pl)}
+.msgrid[data-only=pq] .msl.pl,.msgrid[data-only=pl] .msl.pq{display:none}
 /*@/TEAMCSS*//*@SHELLCSS*/
 /* ===== site à plusieurs pages : menu latéral, pages, sous-onglets ===== */
 :root{--side-w:236px}
@@ -642,37 +648,32 @@ ul.tree small{display:block;color:var(--muted);font-size:.76rem}
   <div class="kicker rv">01 · Répartition du travail</div>
   <h2 class="rv">Une tâche, un relecteur&nbsp;: Google Drive pour les documents, Git pour le code.</h2>
   <p class="lead rv">Le binôme travaille comme une équipe DataOps. Chacun possède un fil métier de bout en bout et une plateforme, et relit tout ce que l'autre produit. Les documents circulent dans un Google Drive partagé ; le code dbt des sprints 4 et 5 passe par Git, comme l'exige le sujet.</p>
-  <div data-tab="binome|Binôme et règles">
-  <div class="duo sub rv" id="duo"></div>
+  <div class="sub rv" id="eq-plan"><h3>Le plan, sprint par sprint</h3>
+    <p>Une ligne par personne, une ligne « En équipe » pour les tâches faites en coopération, une colonne par sprint. Les tâches de code passent par l'intégration continue ; les boutons ci-dessous les mettent en évidence, comme les tâches en coopération. Sous l'en-tête, le nom de qui fige la version du sprint. Cliquez sur une tâche pour voir son circuit.</p>
+    <div class="planbar" id="planbar"></div>
+    <div class="scroll"><div class="board" id="board"></div></div>
+    <div class="bfoot"><span class="hint">Pour suivre les tâches à deux, importez le CSV dans un Google Sheets du Drive partagé (Fichier → Importer).</span><button class="btn o" id="csv">Exporter les tâches (CSV)</button></div>
+  </div>
+
+  <div class="sub circsec" id="eq-circuit" hidden><div class="circhead"><h3>Le circuit d'une tâche</h3><button class="btn o" id="circclose">Fermer le circuit</button></div>
+    <p>Un document suit le circuit Google Drive, du code suit le circuit Git. Voici le chemin de la tâche choisie. Le jeton change de couleur selon qui agit : le propriétaire, le relecteur ou la chaîne automatique.</p>
+    <div class="pipecard"><div class="pipehead"><span id="pipetask"></span><span class="ctabs"><button class="ctab" data-c="drive">Circuit Google Drive</button><button class="ctab" data-c="git">Circuit Git</button></span><button class="btn" id="pipeplay">▶ Rejouer</button></div>
+      <div class="pipems" id="pipems"></div><div class="pipe" id="pipe"></div><div class="pipedet" id="pipedet"></div><div class="psteps" id="psteps"></div></div>
+  </div>
+
+  <div class="sub rv" id="eq-mini"><h3>Le rythme : deux mini-sprints par sprint</h3>
+    <p>Chaque sprint est découpé en deux cycles courts. Le cycle encadre l'intégration continue : on planifie à deux, chacun fait passer ses tâches par leur circuit, l'autre relit, puis un point binôme réunit les parts des tâches en coopération et redécoupe ce qui n'est pas fini.</p>
+    <div class="cadence" id="cadence"></div>
+    <div class="msgrid" id="msgrid"></div>
+  </div>
+
+  <div class="sub rv" id="eq-binome"><h3>Le binôme et les règles</h3>
+  <div class="duo rv" id="duo"></div>
   <div class="swapbar rv"><span id="swaptxt"></span><button class="btn o" id="swap">Inverser les deux parts</button></div>
   <div class="sub rv"><h3>Les règles de travail</h3><div class="grid g3" id="rules"></div></div>
   <div class="sub rv"><h3>Où ranger quoi</h3><p>Deux espaces, chacun pour un type de travail. Les données internes du kit ne vont dans aucun des deux.</p><div class="grid g2" id="trees"></div></div>
   </div>
 
-  <div class="sub rv" data-tab="mini|Mini-sprints"><h3>Le rythme : deux mini-sprints par sprint</h3>
-    <p>Chaque sprint est découpé en deux cycles courts. Le cycle encadre l'intégration continue : on planifie à deux, chacun fait passer ses tâches par leur circuit, l'autre relit, puis un point binôme réunit les parts des tâches en coopération et redécoupe ce qui n'est pas fini.</p>
-    <div class="cadence" id="cadence"></div>
-    <div class="msgrid" id="msgrid"></div>
-  </div>
-  <div class="sub rv" data-tab="circuit|Circuit d'une tâche"><h3>Le circuit d'une tâche</h3>
-    <p>Un document suit le circuit Google Drive, du code suit le circuit Git. Cliquez sur une tâche dans le plan ou le backlog pour la suivre ici. Le jeton change de couleur selon qui agit : le propriétaire, le relecteur ou la chaîne automatique.</p>
-    <div class="pipecard"><div class="pipehead"><span id="pipetask"></span><span class="ctabs"><button class="ctab" data-c="drive">Circuit Google Drive</button><button class="ctab" data-c="git">Circuit Git</button></span><button class="btn" id="pipeplay">▶ Rejouer</button></div>
-      <div class="pipems" id="pipems"></div><div class="pipe" id="pipe"></div><div class="pipedet" id="pipedet"></div><div class="psteps" id="psteps"></div></div>
-  </div>
-
-  <div class="sub rv" data-tab="plan|Plan par sprint"><h3>Le plan, sprint par sprint</h3>
-    <p>Une ligne par personne, une ligne « En équipe » pour les tâches faites en coopération, une colonne par sprint. Les tâches de code passent par l'intégration continue ; les boutons ci-dessous les mettent en évidence, comme les tâches en coopération. Sous l'en-tête, le nom de qui fige la version du sprint.</p>
-    <div class="planbar" id="planbar"></div>
-    <div class="scroll"><div class="board" id="board"></div></div>
-  </div>
-
-  <div class="sub rv" data-tab="backlog|Backlog"><h3>Le backlog détaillé</h3>
-    <div class="bfilters" id="bfilters"></div>
-    <div class="scroll"><table class="backlog" id="backlog"></table></div>
-    <div class="bfoot"><span id="bstat"></span>
-      <span><button class="btn o" id="csv">Exporter le backlog (CSV)</button></span></div>
-    <p class="hint">Les cases cochées sont mémorisées dans ce navigateur seulement. Pour suivre le backlog à deux, importez le CSV dans un Google Sheets du Drive partagé (Fichier → Importer). Une tâche est terminée quand son document est sous 2-Validé, ou quand sa demande de fusion est fusionnée pour du code.</p>
-  </div>
 </div></section>
 <!--@/TEAM--><!-- ================= AS-IS ================= -->
 <section id="asis" class="band"><div class="wrap">
@@ -1332,7 +1333,7 @@ const TEAM={"review_h": 0.25, "capacity_h": 36, "members": {"Q": {"nom": "Quenti
 (function(){
 const T=TEAM,esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-let swapped=store.get('eb-swap',false),done=store.get('eb-done',null),cur=null,fP='',fS='',fD='',fC='';
+let swapped=store.get('eb-swap',false),done=store.get('eb-done',null),cur=null;
 if(!done){done={};T.tasks.forEach(t=>{if(t.statut=='fait')done[t.id]=1})}
 const person=r=>T.members[swapped?(r=='Q'?'L':'Q'):r];          // rôle → personne
 const other=r=>r=='Q'?'L':'Q';
@@ -1352,7 +1353,7 @@ async function saveFile(name,blob){
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),2000)}
 
 function load(r){const p={prod:0,rev:0,done:0};T.tasks.forEach(t=>{if(t.coop){p.prod+=t.h/2;if(done[t.id])p.done+=t.h/2}else if(t.owner==r){p.prod+=t.h;if(done[t.id])p.done+=t.h}else p.rev+=T.review_h});return p}
-let hl=store.get('eb-hl',''),stepsDone=store.get('eb-steps',{});
+let hl=store.get('eb-hl',''),only=store.get('eb-only',''),stepsDone=store.get('eb-steps',{});
 const fill=x=>x.replace('{Q}',person('Q').court).replace('{L}',person('L').court);
 const MS=t=>`${t.sprint}.${t.ms}`;
 const miniOf=t=>T.mini.find(m=>m[0]==t.sprint&&m[1]==t.ms);
@@ -1382,12 +1383,19 @@ function chip(t,r){
     <span class="ct">${esc(t.titre)}</span>${t.coop?`<span class="cw">${esc(t.coop)}</span>`:''}<span class="ch">${H(t.h)}${t.coop?' à deux':''}</span></button>`}
 function board(){
   const nCI=T.tasks.filter(t=>t.canal=='git').length,nCO=T.tasks.filter(t=>t.coop).length;
-  $('#planbar').innerHTML=`<span class="pl-lab">Mettre en évidence</span>
+  const nP=k=>T.tasks.filter(t=>t.coop||t.owner==k).length;
+  $('#planbar').innerHTML=`<span class="pl-lab">Personne</span>
+    <button class="hlb who-f${only==''?' on':''}" data-o="">Les deux</button>
+    <button class="hlb who-f ${cls('Q')}${only=='Q'?' on':''}" data-o="Q">${person('Q').court} <small>${nP('Q')}</small></button>
+    <button class="hlb who-f ${cls('L')}${only=='L'?' on':''}" data-o="L">${person('L').court} <small>${nP('L')}</small></button>
+    <span class="pl-sep"></span>
+    <span class="pl-lab">Mettre en évidence</span>
     <button class="hlb${hl==''?' on':''}" data-h="">Toutes les tâches</button>
     <button class="hlb ci${hl=='ci'?' on':''}" data-h="ci">Intégration continue <small>${nCI}</small></button>
     <button class="hlb coop${hl=='coop'?' on':''}" data-h="coop">Coopération <small>${nCO}</small></button>
     <span class="pl-leg"><span class="lg doc"></span>document relu dans Drive <span class="lg ci"></span>code : demande de fusion, chaîne automatique, revue <span class="lg coop"></span>fait à deux</span>`;
-  $$('#planbar .hlb').forEach(b=>b.onclick=()=>{hl=b.dataset.h;store.set('eb-hl',hl);board()});
+  $$('#planbar .hlb:not(.who-f)').forEach(b=>b.onclick=()=>{hl=b.dataset.h;store.set('eb-hl',hl);board()});
+  $$('#planbar .who-f').forEach(b=>b.onclick=()=>{only=b.dataset.o;store.set('eb-only',only);board();minis()});
   const head=`<div class="bh"></div>`+T.sprints.map(s=>`<div class="bh"><b>Sprint ${s[0]}</b><small>${esc(s[1])}</small><em>${s[2]} · fige : ${person(T.lead[s[0]]).court}</em></div>`).join('');
   const lane=(lab,f,r)=>lab+T.sprints.map(s=>`<div class="bc${r?'':' both'}">${T.tasks.filter(t=>t.sprint==s[0]&&f(t)).map(t=>chip(t,r)).join('')}</div>`).join('');
   const rowQ=lane(`<div class="bl ${cls('Q')}"><span class="av s">${person('Q').init}</span>${person('Q').court}</div>`,t=>!t.coop&&t.owner=='Q','Q');
@@ -1396,35 +1404,15 @@ function board(){
   const bars=`<div class="bl"></div>`+T.sprints.map(s=>{const ts=T.tasks.filter(t=>t.sprint==s[0]),q=ts.filter(t=>!t.coop&&t.owner=='Q').reduce((a,t)=>a+t.h,0),l=ts.filter(t=>!t.coop&&t.owner=='L').reduce((a,t)=>a+t.h,0),b=ts.filter(t=>t.coop).reduce((a,t)=>a+t.h,0);
     return `<div class="bbar"><div><i class="${cls('Q')}" style="flex:${q}"></i>${b?`<i class="both" style="flex:${b}"></i>`:''}<i class="${cls('L')}" style="flex:${l}"></i></div><small>${H(q)} · ${b?H(b)+' à deux · ':''}${H(l)}</small></div>`}).join('');
   $('#board').className='board'+(hl?' hl-'+hl:'');
-  $('#board').innerHTML=head+rowQ+rowB+rowL+bars;
+  $('#board').innerHTML=head+(only=='L'?'':rowQ)+rowB+(only=='Q'?'':rowL)+bars;
   $$('#board .chip').forEach(c=>c.onclick=()=>pick(c.dataset.id,true));
-}
-function filters(){
-  const opt=(id,lab,vals)=>`<label>${lab} <select id="${id}">${vals.map(v=>`<option value="${v[0]}">${v[1]}</option>`).join('')}</select></label>`;
-  $('#bfilters').innerHTML=opt('fP','Propriétaire',[['','tous'],['Q',person('Q').court],['L',person('L').court]])+opt('fS','Sprint',[['','tous'],...T.sprints.map(s=>[s[0],'sprint '+s[0]])])+opt('fC','Mode',[['','tous'],['git','intégration continue (Git)'],['drive','document (Drive)'],['coop','coopération'],['solo','individuel']])+opt('fD','Statut',[['','tous'],['0','à faire'],['1','fait']]);
-  $('#fP').value=fP;$('#fS').value=fS;$('#fD').value=fD;$('#fC').value=fC;
-  ['fP','fS','fD','fC'].forEach(k=>$('#'+k).onchange=e=>{({fP:()=>fP=e.target.value,fS:()=>fS=e.target.value,fD:()=>fD=e.target.value,fC:()=>fC=e.target.value})[k]();backlog()});
-}
-function rows(){return T.tasks.filter(t=>(!fP||t.owner==fP)&&(!fS||t.sprint==fS)&&(!fC||(fC=='coop'?!!t.coop:fC=='solo'?!t.coop:t.canal==fC))&&(!fD||(done[t.id]?'1':'0')==fD))}
-function backlog(){
-  const rs=rows();
-  $('#backlog').innerHTML='<tr><th></th><th>Tâche</th><th>Propriétaire</th><th>Relecteur</th><th>Emplacement</th><th>Contrôle avant validation</th><th>Dépend de</th><th>Charge</th></tr>'+rs.map(t=>`<tr class="${done[t.id]?'ok':''}${cur&&cur.id==t.id?' sel':''}" data-id="${t.id}">
-    <td><input type="checkbox" aria-label="${t.id} fait" ${done[t.id]?'checked':''}></td>
-    <td><span class="code">${t.id}</span> <span class="tty ty-${t.type}">${T.types[t.type]}</span> ${t.canal=='git'?'<span class="mtag ci">Intégration continue</span>':''}${t.coop?'<span class="mtag coop">Coopération</span>':''}<br><b>${esc(t.titre)}</b><br><small>${esc(t.livrable)}${t.coop?' · '+esc(t.coop):''}</small><br><small class="bms">mini-sprint ${MS(t)} · ${stepState(t).filter(Boolean).length}/${t.steps.length} sous-étapes</small></td>
-    <td>${t.coop?`<span class="who ${cls('Q')}">${person('Q').court}</span> <span class="who ${cls('L')}">${person('L').court}</span><br><small>pilote : ${person(t.owner).court}</small>`:`<span class="who ${cls(t.owner)}">${person(t.owner).court}</span>`}</td><td>${t.coop?'<small>chacun relit la partie de l\'autre</small>':`<span class="who ${cls(other(t.owner))} o">${person(other(t.owner)).court}</span>`}</td>
-    <td><span class="cn ${t.canal}">${CANAL[t.canal]}</span><br><code class="br ${t.canal}">${esc(where(t))}</code></td><td>${esc(t.gate)}</td><td>${t.dep.map(d=>`<a href="#" class="dep" data-id="${d}">${d}</a>`).join(' ')||'—'}</td><td style="white-space:nowrap">${H(t.h)}${t.coop?'<br><small>à deux</small>':''}</td></tr>`).join('');
-  const all=T.tasks.length,ok=T.tasks.filter(t=>done[t.id]).length;
-  $('#bstat').innerHTML=`<b>${ok}</b> tâche${ok>1?'s':''} faite${ok>1?'s':''} sur ${all} · ${rs.length} affichée${rs.length>1?'s':''}`;
-  $$('#backlog tr[data-id]').forEach(tr=>{tr.onclick=e=>{if(e.target.matches('input,a'))return;pick(tr.dataset.id,true)};
-    $('input',tr).onchange=e=>{if(e.target.checked)done[tr.dataset.id]=1;else delete done[tr.dataset.id];store.set('eb-done',done);refresh()}});
-  $$('#backlog a.dep').forEach(a=>a.onclick=e=>{e.preventDefault();pick(a.dataset.id,true)});
 }
 /* ---- circuit animé : Google Drive pour un document, Git pour du code ---- */
 let timer=0,shown='';
 const P=t=>t.canal=='git'?T.pipe_git:T.pipe_drive;
 function pipe(t){
   if(shown==t.canal)return;shown=t.canal;
-  $('#pipe').innerHTML=P(t).map((p,i)=>`<div class="ps" data-i="${i}"><div class="pn">${i+1}</div><b>${p[1]}</b><span class="pa">${who(p,t)}</span></div>`).join('<div class="plk"><i></i></div>');
+  $('#pipe').innerHTML=P(t).map((p,i)=>`<div class="ps" data-i="${i}" role="button" tabindex="0" title="Voir cette étape"><div class="pn">${i+1}</div><b>${p[1]}</b><span class="pa">${who(p,t)}</span></div>`).join('<div class="plk"><i></i></div>');
   $$('.pipecard .ctab').forEach(b=>b.classList.toggle('on',b.dataset.c==t.canal));
 }
 function who(p,t){const w=k=>`<span class="who ${cls(k)}">${person(k).court}</span>`;
@@ -1432,31 +1420,41 @@ function who(p,t){const w=k=>`<span class="who ${cls(k)}">${person(k).court}</sp
   if(t.coop&&(p[3]=='propriétaire'||p[3]=='relecteur'))return w('Q')+w('L');
   return p[3]=='propriétaire'?w(t.owner):p[3]=='relecteur'?w(other(t.owner)):w(T.lead[t.sprint])}
 function actor(p,t){if(t.coop&&p[3]=='propriétaire')return['own',`${person('Q').court} et ${person('L').court}`];if(t.coop&&p[3]=='relecteur')return['rev','chacun relit la partie de l\'autre'];return p[3]=='propriétaire'?['own',person(t.owner).court]:p[3]=='relecteur'?['rev',person(other(t.owner)).court]:p[3]=='machine'?['bot','chaîne automatique']:['own',person(T.lead[t.sprint]).court]}
-function play(){
-  clearTimeout(timer);const t=cur;pipe(t);const PP=P(t),steps=$$('#pipe .ps'),links=$$('#pipe .plk');let i=0;
-  steps.forEach(s=>s.className='ps');links.forEach(l=>l.className='plk');
-  const step=()=>{if(i>0){steps[i-1].classList.remove('on');steps[i-1].classList.add('past');links[i-1]&&links[i-1].classList.add('past')}
-    if(i>=steps.length){$('#pipedet').innerHTML=t.canal=='git'?`<b>Terminé.</b> ${esc(t.id)} est dans main ; ${t.type=='release'?`l'étiquette sprint-${t.sprint} est posée.`:`elle partira en production avec l'étiquette sprint-${t.sprint}.`}`
+/* circuit : lecture automatique, arrêt, clic sur une étape */
+let pos=0,running=false;
+function detail(t,i){const PP=P(t),steps=$$('#pipe .ps'),links=$$('#pipe .plk');
+  steps.forEach((s,k)=>{s.className='ps'+(k<i?' past':'');s.setAttribute('aria-pressed',k==i)});links.forEach((l,k)=>l.className='plk'+(k<i?' past':''));
+  if(i>=steps.length){$('#pipedet').innerHTML=t.canal=='git'?`<b>Terminé.</b> ${esc(t.id)} est dans main ; ${t.type=='release'?`l'étiquette sprint-${t.sprint} est posée.`:`elle partira en production avec l'étiquette sprint-${t.sprint}.`}`
       :`<b>Terminé.</b> ${esc(t.id)} est sous 2-Validé ; ${t.type=='release'?`la version sprint-${t.sprint} est figée et déposée.`:`la version sprint-${t.sprint} la figera sous 3-Livré.`}`;return}
-    const p=PP[i],a=actor(p,t),s=steps[i];s.classList.add('on','a-'+a[0]);
-    if(i<links.length)links[i].classList.add('go','a-'+actor(PP[i+1],t)[0]);
-    let extra='';
-    if(p[0]=='branch')extra=` <code class="br git">${esc(branch(t))}</code>`;
-    if(p[0]=='draft')extra=` <code class="br drive">${esc(where(t))}</code>`;
-    if(p[0]=='ci')extra=` Contrôle propre à cette tâche : <i>${esc(t.gate)}</i>.`;
-    if(p[0]=='review')extra=t.coop?` Tâche faite à deux (${esc(t.coop)}) : ${person('Q').court} relit la partie de ${person('L').court}, et inversement. À vérifier : <i>${esc(t.gate)}</i>.`:` Relecteur : <b>${person(other(t.owner)).court}</b>.${t.canal=='drive'?` Il vérifie : <i>${esc(t.gate)}</i>.`:''}`;
-    if(p[0]=='tag')extra=` Ici : <b>sprint-${t.sprint}</b>.`;
-    if(p[0]=='freeze')extra=` Ici : <code class="br drive">${FOLDER[t.sprint]} › 3-Livré › EBA_DOMON_COUZINET_&lt;livrable&gt;_sprint${t.sprint}.pdf</code>`;
-    $('#pipedet').innerHTML=`<span class="pd a-${a[0]}">${a[1]}</span> <b>${p[1]}.</b> ${esc(p[2])}${extra}`;
-    i++;timer=setTimeout(step,p[0]=='ci'||p[0]=='review'?1500:1150)};
-  step();
-}
+  const p=PP[i],a=actor(p,t),s=steps[i];s.classList.add('on','a-'+a[0]);
+  if(i>0&&links[i-1])links[i-1].classList.add('past');
+  if(running&&i<links.length)links[i].classList.add('go','a-'+actor(PP[i+1],t)[0]);
+  let extra='';
+  if(p[0]=='branch')extra=` <code class="br git">${esc(branch(t))}</code>`;
+  if(p[0]=='draft')extra=` <code class="br drive">${esc(where(t))}</code>`;
+  if(p[0]=='ci')extra=` Contrôle propre à cette tâche : <i>${esc(t.gate)}</i>.`;
+  if(p[0]=='review')extra=t.coop?` Tâche faite à deux (${esc(t.coop)}) : ${person('Q').court} relit la partie de ${person('L').court}, et inversement. À vérifier : <i>${esc(t.gate)}</i>.`:` Relecteur : <b>${person(other(t.owner)).court}</b>.${t.canal=='drive'?` Il vérifie : <i>${esc(t.gate)}</i>.`:''}`;
+  if(p[0]=='tag')extra=` Ici : <b>sprint-${t.sprint}</b>.`;
+  if(p[0]=='freeze')extra=` Ici : <code class="br drive">${FOLDER[t.sprint]} › 3-Livré › EBA_DOMON_COUZINET_&lt;livrable&gt;_sprint${t.sprint}.pdf</code>`;
+  $('#pipedet').innerHTML=`<span class="pd a-${a[0]}">${a[1]}</span> <b>${p[1]}.</b> ${esc(p[2])}${extra}`}
+function playBtn(){const b=$('#pipeplay'),n=$$('#pipe .ps').length;
+  b.textContent=running?'❚❚ Arrêter':pos>=n||pos==0?'▶ Rejouer':'▶ Reprendre';b.setAttribute('aria-pressed',running)}
+function tick(){const t=cur,PP=P(t),n=PP.length;detail(t,pos);
+  if(pos>=n){running=false;playBtn();return}
+  const k=PP[pos][0];pos++;timer=setTimeout(tick,k=='ci'||k=='review'?1500:1150)}
+function stop(){clearTimeout(timer);running=false;playBtn()}
+function play(){clearTimeout(timer);pipe(cur);pos=0;running=true;playBtn();tick()}
+function toggle(){const n=$$('#pipe .ps').length;
+  if(running){stop();pos=Math.max(0,pos-1);detail(cur,pos);return}
+  if(pos>=n||pos==0)return play();
+  running=true;playBtn();tick()}
+function goStep(i){stop();pos=i;detail(cur,i);pos=i;playBtn()}
 function pick(id,go){cur=byId[id];pipe(cur);steps();
   $('#pipetask').innerHTML=`<span class="code">${cur.id}</span> ${esc(cur.titre)} ${cur.coop?`<span class="who ${cls('Q')}">${person('Q').court}</span> <span class="who ${cls('L')}">${person('L').court}</span>`:`<span class="who ${cls(cur.owner)}">${person(cur.owner).court}</span>`} <span class="cn ${cur.canal}">${CANAL[cur.canal]}</span>${cur.canal=='git'?' <span class="mtag ci">Intégration continue</span>':''}${cur.coop?' <span class="mtag coop">Coopération</span>':''}`;
-  $$('#board .chip').forEach(c=>c.classList.toggle('sel',c.dataset.id==id));$$('#backlog tr[data-id]').forEach(r=>r.classList.toggle('sel',r.dataset.id==id));
-  if(go){if(window.EB)EB.go('equipe','circuit');play();const pc=$('.pipecard');const r=pc.getBoundingClientRect();if(r.top<0||r.bottom>innerHeight)pc.scrollIntoView({block:'center'})}}
+  $$('#board .chip').forEach(c=>c.classList.toggle('sel',c.dataset.id==id));
+  if(go){const cs=$('#eq-circuit');cs.hidden=false;if(window.EB)EB.go('equipe');play();cs.scrollIntoView({block:'start'})}}
 function steps(){const t=cur,m=miniOf(t),st=stepState(t);
-  $('#pipems').innerHTML=`<span class="msid">mini-sprint ${MS(t)}</span> <b>${esc(m[2])}</b> · ${esc(m[3])} <a href="#equipe-mini" class="msgo">voir le mini-sprint</a>`;
+  $('#pipems').innerHTML=`<span class="msid">mini-sprint ${MS(t)}</span> <b>${esc(m[2])}</b> · ${esc(m[3])} <a href="#equipe" class="msgo">voir le mini-sprint</a>`;
   $('#psteps').innerHTML=`<h5>Sous-étapes de ${t.id}</h5><ol>${t.steps.map((x,i)=>`<li><label><input type="checkbox" data-i="${i}" ${st[i]?'checked':''}> <span>${esc(fill(x))}</span></label></li>`).join('')}</ol>`;
   $$('#psteps input').forEach(c=>c.onchange=()=>{const a=stepState(t);a[+c.dataset.i]=c.checked;stepsDone[t.id]=a;store.set('eb-steps',stepsDone);
     if(a.every(Boolean)&&!done[t.id]){done[t.id]=1;store.set('eb-done',done)}refresh()})}
@@ -1467,6 +1465,7 @@ function cadence(){
   cadT=setInterval(()=>{const ph=$$('#cadence .cph');if(!ph.length||!ph[0].offsetParent)return;ph.forEach((p,i)=>p.classList.toggle('on',i==k));k=(k+1)%ph.length},1500)}
 function minis(){
   const lane=(lab,c,ts)=>ts.length?`<div class="msl ${c}"><span class="mlab">${lab}</span>${ts.map(t=>`<button class="mst${t.canal=='git'?' ci':''}${t.coop?' coop':''}${done[t.id]?' ok':''}" data-id="${t.id}"><span class="cid">${t.id}</span> ${esc(t.titre)}${t.canal=='git'?' <span class="mtag ci">CI</span>':''}${t.coop?' <span class="mtag coop">à deux</span>':''}</button>`).join('')}</div>`:'';
+  $('#msgrid').dataset.only=only?cls(only):'';
   $('#msgrid').innerHTML=T.sprints.map(sp=>`<div class="msrow"><div class="msrh"><b>Sprint ${sp[0]}</b><small>${esc(sp[1])}</small></div>${T.mini.filter(m=>m[0]==sp[0]).map(m=>{
     const ts=T.tasks.filter(t=>t.sprint==m[0]&&t.ms==m[1]),ok=ts.filter(t=>done[t.id]).length,h=ts.reduce((a,t)=>a+t.h,0);
     return `<div class="mscard"><div class="msh"><span class="msid">${m[0]}.${m[1]}</span><b>${esc(m[2])}</b><span class="msp">${ok}/${ts.length} · ${H(h)}</span></div>
@@ -1476,18 +1475,21 @@ function minis(){
       <div class="mssync"><span>4</span><div><b>Point binôme</b><p>${esc(m[4])}</p></div></div></div>`}).join('')}</div>`).join('');
   $$('#msgrid .mst').forEach(b=>b.onclick=()=>pick(b.dataset.id,true));
 }
-function refresh(){duo();board();backlog();minis();if(cur)steps()}
-$('#swap').onclick=()=>{swapped=!swapped;store.set('eb-swap',swapped);rules();filters();refresh();pick(cur.id,false)};
+function refresh(){duo();board();minis();if(cur)steps()}
+$('#swap').onclick=()=>{swapped=!swapped;store.set('eb-swap',swapped);rules();refresh();pick(cur.id,false)};
 cadence();
-$('#pipeplay').onclick=play;
+$('#pipeplay').onclick=toggle;
+$('#pipe').addEventListener('click',e=>{const s=e.target.closest('.ps');if(s)goStep(+s.dataset.i)});
+$('#pipe').addEventListener('keydown',e=>{const s=e.target.closest('.ps');if(s&&(e.key=='Enter'||e.key==' ')){e.preventDefault();goStep(+s.dataset.i)}});
 $$('.pipecard .ctab').forEach(b=>b.onclick=()=>{const t=T.tasks.find(x=>x.canal==b.dataset.c&&!done[x.id])||T.tasks.find(x=>x.canal==b.dataset.c);pick(t.id,true)});
 $('#csv').onclick=()=>{
   const q=s=>'"'+String(s).replace(/"/g,'""')+'"';
   const lines=['title,description'].concat(T.tasks.map(t=>[q(`[${t.id}] ${t.titre}`),q(`Sprint ${t.sprint}. ${t.coop?`En coopération (${t.coop}) : ${person('Q').nom} et ${person('L').nom}, pilote ${person(t.owner).nom}.`:`Propriétaire : ${person(t.owner).nom}. Relecteur : ${person(other(t.owner)).nom}.`}\nMode : ${t.canal=='git'?'intégration continue (Git)':'document (Google Drive)'}\nEmplacement : ${where(t)}\nMini-sprint : ${MS(t)} (${miniOf(t)[2]})\nLivrable : ${t.livrable}\nContrôle avant validation : ${t.gate}\nDépend de : ${t.dep.join(', ')||'—'}\nCharge estimée : ${H(t.h)}\nSous-étapes :\n${t.steps.map(x=>'- [ ] '+fill(x)).join('\n')}`)].join(',')));
   saveFile('EuroBench_backlog_tickets.csv',new Blob(['﻿'+lines.join('\n')],{type:'text/csv'}))};
-rules();trees();filters();refresh();
+rules();trees();refresh();
 const first=T.tasks.find(t=>!done[t.id])||T.tasks[0];pick(first.id,false);
-new IntersectionObserver((es,o)=>{if(es[0].isIntersecting){play();o.disconnect()}},{threshold:.4}).observe($('.pipecard'));
+$('#circclose').onclick=()=>{stop();const id=cur.id;$('#eq-circuit').hidden=true;$$('#board .chip').forEach(c=>c.classList.remove('sel'));const c=$(`#board .chip[data-id="${id}"]`);if(c)c.scrollIntoView({block:'center'})};
+$('#pipems').addEventListener('click',e=>{const a=e.target.closest('.msgo');if(!a)return;e.preventDefault();const m=$(`#msgrid .mst[data-id="${cur.id}"]`);(m||$('#eq-mini')).scrollIntoView({block:'center'})});
 })();
 /*@/TEAMJS*//*@ROUTER*/
 /* ================= NAVIGATION ENTRE LES PAGES ================= */
