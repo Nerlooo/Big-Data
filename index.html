@@ -515,6 +515,27 @@ nav a.l{white-space:nowrap}
 .pl-sep{width:1px;height:22px;background:var(--line);margin:0 6px}
 .hlb.who-f.pq.on{background:var(--pq);border-color:var(--pq)}.hlb.who-f.pl.on{background:var(--pl);border-color:var(--pl)}
 .msgrid[data-only=pq] .msl.pl,.msgrid[data-only=pl] .msl.pq{display:none}
+.psteps h5 .vs{color:#c9d4df;text-transform:none;letter-spacing:0;font-weight:600}.psteps h5 .vs.ok{color:#7fd6c4}
+
+.mcard{flex-wrap:wrap}.mcard .mi{flex:1;min-width:0}
+.etapes{margin:12px 0 4px;padding:12px;background:var(--cs);border-radius:12px}
+.etapes h4{margin:0 0 8px;font:700 .7rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.er{margin-bottom:8px}.er:last-of-type{margin-bottom:4px}
+.el2{display:block;font-size:.8rem;font-weight:700;margin-bottom:4px}
+.ep{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin-bottom:3px}
+.ept{font:700 .6rem var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:5px;background:#e3efe0;color:#2c6a1f;min-width:52px;text-align:center}
+.ept.git{background:#ece4f6;color:#5a3a8a}
+.stp{display:inline-flex;align-items:center;gap:5px;font-size:.76rem;background:var(--card);border:1px solid var(--line);border-radius:99px;padding:2px 9px 2px 3px}
+.stp b{display:inline-grid;place-items:center;width:17px;height:17px;border-radius:50%;background:var(--c);color:#fff;font:700 .62rem var(--mono)}
+.ehint{margin:6px 0 0;font-size:.76rem;color:var(--muted)}
+
+.todo{margin:12px 0 4px;padding:12px;background:var(--cs);border-radius:12px}
+.todo h4{margin:0 0 6px;font:700 .7rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--c)}
+.todo .tdh{margin:0 0 10px;font-size:.84rem}.todo .tdh .msid{margin-right:4px}
+.tdi{margin-bottom:10px}.tdi .chip{width:100%;text-align:left}
+.tdi .nxt{margin:4px 2px 0;font-size:.8rem;color:#3a4757}.tdi .nxt span{display:block;font:700 .6rem var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.tdi{min-width:0}.tdi .chip{box-sizing:border-box;width:100%;max-width:100%;min-width:0;margin:0}
+.todo{box-sizing:border-box;min-width:0;max-width:100%}
 /*@/TEAMCSS*//*@SHELLCSS*/
 /* ===== site à plusieurs pages : menu latéral, pages, sous-onglets ===== */
 :root{--side-w:236px}
@@ -603,6 +624,7 @@ ul.tree small{display:block;color:var(--muted);font-size:.76rem}
   .ptabs{top:58px}
 }
 @media(max-width:640px){.wrap{padding:0 16px}.ptabs a{padding:7px 10px;font-size:.8rem}}
+#vbox .mode{display:none}#vbox .viewer{margin-top:14px}
 /*@/SHELLCSS*/</style>
 </head>
 <body>
@@ -616,19 +638,17 @@ ul.tree small{display:block;color:var(--muted);font-size:.76rem}
     <a href="#asis" data-v="asis"><span class="n">02</span>AS-IS</a>
     <div class="grp">Cible</div>
     <a href="#tobe" data-v="tobe"><span class="n">03</span>TO-BE</a>
-    <a href="#carto" data-v="carto"><span class="n">04</span>Cartographie</a>
-    <a href="#processus" data-v="processus"><span class="n">05</span>Processus métier</a>
-    <a href="#archi" data-v="archi"><span class="n">06</span>Architectures</a>
-    <a href="#donnees" data-v="donnees"><span class="n">07</span>Modèles de données</a>
+    <a href="#archi" data-v="archi"><span class="n">04</span>Architectures</a>
+    <a href="#donnees" data-v="donnees"><span class="n">05</span>Modèles de données</a>
     <div class="grp">Revue</div>
-    <a href="#questions" data-v="questions"><span class="n">08</span>Questions</a>
+    <a href="#questions" data-v="questions"><span class="n">06</span>Questions</a>
   </div>
-  <div class="sidefoot">Quentin DOMON<br>Lorenzo COUZINET<small>Sujet v3.1 · kit v1</small></div>
+  <div class="sidefoot">Quentin DOMON<br>Lorenzo COUZINET</div>
 </aside>
 <main class="main" id="main">
 
 <section id="accueil"><header class="hero"><div class="wrap">
-  <div class="kicker">Sujet de projet v3.1 · Big Data avec Spark</div>
+  <div class="kicker">Sujet de projet · Big Data avec Spark</div>
   <h1>De la publication de l'EBA au rapport livré, <em>sans copier-coller</em>.</h1>
   <p>Support de travail du binôme Quentin DOMON et Lorenzo COUZINET : répartition des tâches, cartographie de l'existant (AS-IS), cible (TO-BE), processus métier, architectures et modèles de données.</p>
   <div class="chain">
@@ -638,16 +658,22 @@ ul.tree small{display:block;color:var(--muted);font-size:.76rem}
     <div class="n me"><span class="num">MAILLON 4 · PÉRIMÈTRE DU PROJET</span><b>EuroBench</b><small>Collecte, contrôle, calcul, analyse, comité, rapports, diffusion.</small></div>
     <div class="n"><span class="num">MAILLON 5</span><b>Abonnés</b><small>Directions des risques, assureurs, gérants d'actifs, fonds de pension.</small></div>
   </div>
-  <div class="legend"><span><span class="tag doc" style="color:#c3cfdb">Sujet</span> repris du document</span><span><span class="tag prop">Proposition</span> conception proposée, à discuter et à justifier</span></div>
+  <div class="legend"><span><span class="tag doc" style="color:#c3cfdb">Sujet</span> repris du document</span><span><span class="tag prop">Proposition</span> conception proposée</span></div>
 </div></header>
-<div class="wrap home"><h2 class="hh">Par où commencer</h2><div id="homegrid"></div></div></section>
+<div class="wrap home"><h2 class="hh">Organisation du projet</h2><div id="homegrid"></div></div></section>
 
 <!--@TEAM-->
 <!-- ================= RÉPARTITION ================= -->
 <section id="equipe"><div class="wrap">
   <div class="kicker rv">01 · Répartition du travail</div>
   <h2 class="rv">Une tâche, un relecteur&nbsp;: Google Drive pour les documents, Git pour le code.</h2>
-  <p class="lead rv">Le binôme travaille comme une équipe DataOps. Chacun possède un fil métier de bout en bout et une plateforme, et relit tout ce que l'autre produit. Les documents circulent dans un Google Drive partagé ; le code dbt des sprints 4 et 5 passe par Git, comme l'exige le sujet.</p>
+  <p class="lead rv">Le binôme travaille en CI/CD, comme une équipe DataOps : chaque tâche est découpée en petites étapes, intégrée en continu et relue par l'autre avant d'être validée, au lieu d'être livrée d'un bloc en fin de sprint. Chacun possède un fil métier de bout en bout et une plateforme. Les documents circulent dans le Google Drive partagé, relus puis validés ; le code dbt des sprints 4 et 5 passe par Git, comme l'exige le sujet : chaque demande de fusion déclenche la chaîne automatique (dbt build), puis la fusion dans main et la mise en production avec l'étiquette du sprint.</p>
+  <div class="sub rv" id="eq-duo"><h3>Le binôme : quoi faire maintenant</h3>
+  <p>Chacun voit les tâches à valider dans son mini-sprint en cours. Cliquez sur une bulle pour ouvrir son circuit et la suivre étape par étape.</p>
+  <div class="duo rv" id="duo"></div>
+  <div class="swapbar rv"><span id="swaptxt"></span><button class="btn o" id="swap">Inverser les deux parts</button></div>
+  </div>
+
   <div class="sub rv" id="eq-plan"><h3>Le plan, sprint par sprint</h3>
     <p>Une ligne par personne, une ligne « En équipe » pour les tâches faites en coopération, une colonne par sprint. Les tâches de code passent par l'intégration continue ; les boutons ci-dessous les mettent en évidence, comme les tâches en coopération. Sous l'en-tête, le nom de qui fige la version du sprint. Cliquez sur une tâche pour voir son circuit.</p>
     <div class="planbar" id="planbar"></div>
@@ -667,11 +693,9 @@ ul.tree small{display:block;color:var(--muted);font-size:.76rem}
     <div class="msgrid" id="msgrid"></div>
   </div>
 
-  <div class="sub rv" id="eq-binome"><h3>Le binôme et les règles</h3>
-  <div class="duo rv" id="duo"></div>
-  <div class="swapbar rv"><span id="swaptxt"></span><button class="btn o" id="swap">Inverser les deux parts</button></div>
-  <div class="sub rv"><h3>Les règles de travail</h3><div class="grid g3" id="rules"></div></div>
-  <div class="sub rv"><h3>Où ranger quoi</h3><p>Deux espaces, chacun pour un type de travail. Les données internes du kit ne vont dans aucun des deux.</p><div class="grid g2" id="trees"></div></div>
+  <div class="sub rv" id="eq-binome"><h3>Les règles de travail</h3>
+  <div class="grid g3 rv" id="rules"></div>
+  <div class="sub rv"><h3>Organisation des espaces de stockage</h3><p>Deux espaces, chacun pour un type de travail. Les données internes du kit ne vont dans aucun des deux.</p><div class="grid g2" id="trees"></div></div>
   </div>
 
 </div></section>
@@ -694,7 +718,7 @@ ul.tree small{display:block;color:var(--muted);font-size:.76rem}
 
   <div data-tab="etapes|Étapes" class="sub rv"><h3>Dix étapes, leurs outils et leurs irritants</h3>
     <div class="grid g5" id="steps"></div>
-    <p style="margin-top:16px"><a class="btn" href="#processus" onclick="V.set('P0','asis')">Voir le BPMN AS-IS animé →</a></p>
+    <p style="margin-top:16px"><a class="btn" href="#asis-bpmn" onclick="V.set('P0','asis')">Voir le BPMN AS-IS animé →</a></p>
   </div>
 
   <div data-tab="si|Système d'information" class="sub rv"><h3>Le système d'information : huit applications, neuf flux</h3>
@@ -716,7 +740,28 @@ ul.tree small{display:block;color:var(--muted);font-size:.76rem}
     </div>
   </div>
 
-  <div data-tab="problemes|Problèmes" class="sub rv"><h3>Neuf problèmes constatés</h3><div class="grid g3" id="pbs"></div></div>
+    <div data-tab="bpmn|Processus BPMN" data-viewer="asis" class="sub rv" id="slot-asis"><h3>Les processus actuels en BPMN 2.0</h3>
+    <p>Un couloir par acteur, les applications en annotation, les irritants marqués d'un point d'exclamation. Choisissez un processus, lancez le jeton, cliquez sur une activité.</p>
+    <div id="vbox">  <div class="viewer sub rv" id="viewer">
+    <div class="vbar"><div class="tabs" id="vtabs"></div>
+      <div class="mode"><i></i><button data-m="asis" class="on">AS-IS</button><button data-m="tobe">TO-BE</button></div></div>
+    <div class="vhead"><h3 id="vtitle"></h3><span class="kpi" id="vkpi"></span>
+      <button class="btn" id="vplay">▶ Suivre le jeton</button>
+      <button class="btn o" id="zm">−</button><button class="btn o" id="zp">+</button></div>
+    <div class="legend2">
+      <span><svg width="20" height="20"><circle cx="10" cy="10" r="7" fill="#fff" stroke="#12202f" stroke-width="1.5"/></svg>événement de début</span>
+      <span><svg width="20" height="20"><circle cx="10" cy="10" r="7" fill="#fff" stroke="#12202f" stroke-width="1.5"/><circle cx="10" cy="10" r="4.5" fill="none" stroke="#12202f"/></svg>événement intermédiaire</span>
+      <span><svg width="20" height="20"><circle cx="10" cy="10" r="6.5" fill="#fff" stroke="#12202f" stroke-width="3"/></svg>fin</span>
+      <span><svg width="26" height="20"><rect x="2" y="3" width="22" height="14" rx="4" fill="#fff" stroke="#12202f" stroke-width="1.5"/></svg>activité</span>
+      <span><svg width="20" height="20"><path d="M10 2 18 10 10 18 2 10Z" fill="#fff" stroke="#12202f" stroke-width="1.5"/></svg>décision</span>
+      <span><svg width="16" height="16"><circle cx="8" cy="8" r="7" fill="#c4532b"/><text x="8" y="11.5" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">!</text></svg>irritant</span>
+      <span><b style="font-family:var(--mono);color:var(--acc);font-size:.72rem">A1 · R4</b>&nbsp;application ou rapport utilisé</span>
+    </div>
+    <div class="stage" id="stage"></div>
+    <div class="detail" id="detail"></div>
+  </div>
+  <div class="extra" id="extra"></div></div></div>
+<div data-tab="problemes|Problèmes" class="sub rv"><h3>Neuf problèmes constatés</h3><div class="grid g3" id="pbs"></div></div>
 </div></section>
 
 <!-- ================= TO-BE ================= -->
@@ -761,14 +806,7 @@ ul.tree small{display:block;color:var(--muted);font-size:.76rem}
   </div>
 
   <div data-tab="rapports|Rapports" class="sub rv"><h3>Huit rapports attendus <span class="tag doc">Sujet</span></h3><div class="grid g4" id="reps"></div></div>
-</div></section>
-
-<!-- ================= CARTO ================= -->
-<section id="carto"><div class="wrap">
-  <div class="kicker rv">04 · Cartographie des processus <span class="tag prop">Proposition</span></div>
-  <h2 class="rv">Six processus, reconstruits à partir des étapes E1 à E10.</h2>
-  <p class="lead rv">Cliquez sur un processus pour ouvrir son diagramme BPMN, en AS-IS et en TO-BE.</p>
-  <div data-tab="carte|Carte des processus" class="map sub rv">
+<div data-tab="carte|Carte des processus" class="sub rv"><h3>Carte des processus cibles <span class="tag prop">Proposition</span></h3><p>Six processus reconstruits à partir des étapes E1 à E10. Cliquez sur un processus pour ouvrir son diagramme BPMN cible.</p><div class="map">
     <div class="mio"><span></span><span>Déclencheurs : publication de l'EBA · calendrier de diffusion · alerte d'un analyste · question d'un client · contrat signé</span></div>
     <div class="mrow"><b>Pilotage</b><div class="tiles">
       <div class="tile"><b>Décider des offres et des investissements</b><small>Direction générale</small></div>
@@ -782,44 +820,19 @@ ul.tree small{display:block;color:var(--muted);font-size:.76rem}
       <div class="tile"><b>Finance, ressources humaines, assistanat</b><small>Fonctions support (5)</small></div>
     </div></div>
     <div class="mio"><span></span><span>Résultats : fiches et classements (R1, R2, R3) · notes publiées aux abonnés Premium · décisions de surveillance · réponses aux clients</span></div>
-  </div>
-
+  </div></div>
+  <div data-tab="bpmn|Processus BPMN" data-viewer="tobe" class="sub rv" id="slot-tobe"><h3>Les processus cibles en BPMN 2.0</h3>
+    <p>Un couloir par acteur, les applications en annotation. Choisissez un processus, lancez le jeton pour suivre le parcours, cliquez sur une activité pour en lire le détail.</p></div>
   <div data-tab="coherence|Cohérence" class="sub rv"><h3>Cohérence entre les vues</h3>
     <p>Chaque étape est supportée par une application, alimente un rapport et se retrouve dans un data product cible.</p>
     <div class="scroll"><table id="coh"></table></div>
   </div>
 </div></section>
 
-<!-- ================= PROCESSUS ================= -->
-<section id="processus"><div class="wrap">
-  <div class="kicker rv">05 · Processus métier · BPMN 2.0</div>
-  <h2 class="rv">Un couloir par acteur, les applications en annotation.</h2>
-  <p class="lead rv">Choisissez un processus, basculez entre l'existant et la cible, lancez le jeton pour suivre le parcours. Cliquez sur une activité pour en lire le détail.</p>
-  <div class="viewer sub rv" id="viewer">
-    <div class="vbar"><div class="tabs" id="vtabs"></div>
-      <div class="mode"><i></i><button data-m="asis" class="on">AS-IS</button><button data-m="tobe">TO-BE</button></div></div>
-    <div class="vhead"><h3 id="vtitle"></h3><span class="kpi" id="vkpi"></span>
-      <button class="btn" id="vplay">▶ Suivre le jeton</button>
-      <button class="btn o" id="zm">−</button><button class="btn o" id="zp">+</button></div>
-    <div class="legend2">
-      <span><svg width="20" height="20"><circle cx="10" cy="10" r="7" fill="#fff" stroke="#12202f" stroke-width="1.5"/></svg>événement de début</span>
-      <span><svg width="20" height="20"><circle cx="10" cy="10" r="7" fill="#fff" stroke="#12202f" stroke-width="1.5"/><circle cx="10" cy="10" r="4.5" fill="none" stroke="#12202f"/></svg>événement intermédiaire</span>
-      <span><svg width="20" height="20"><circle cx="10" cy="10" r="6.5" fill="#fff" stroke="#12202f" stroke-width="3"/></svg>fin</span>
-      <span><svg width="26" height="20"><rect x="2" y="3" width="22" height="14" rx="4" fill="#fff" stroke="#12202f" stroke-width="1.5"/></svg>activité</span>
-      <span><svg width="20" height="20"><path d="M10 2 18 10 10 18 2 10Z" fill="#fff" stroke="#12202f" stroke-width="1.5"/></svg>décision</span>
-      <span><svg width="16" height="16"><circle cx="8" cy="8" r="7" fill="#c4532b"/><text x="8" y="11.5" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">!</text></svg>irritant</span>
-      <span><b style="font-family:var(--mono);color:var(--acc);font-size:.72rem">A1 · R4</b>&nbsp;application ou rapport utilisé</span>
-    </div>
-    <div class="stage" id="stage"></div>
-    <div class="detail" id="detail"></div>
-  </div>
-  <div class="extra" id="extra"></div>
-</div></section>
-
 <!--@SECTIONS-->
 <!-- ================= ARCHITECTURES ================= -->
 <section id="archi" class="band t"><div class="wrap">
-  <div class="kicker rv">06 · Architectures TO-BE · ArchiMate 3.2 <span class="tag prop">Proposition</span></div>
+  <div class="kicker rv">04 · Architectures TO-BE · ArchiMate 3.2 <span class="tag prop">Proposition</span></div>
   <h2 class="rv">Quatre vues d'un même référentiel : métier, applicative, technique, physique.</h2>
   <p class="lead rv">Chaque élément est défini une seule fois et réutilisé d'une vue à l'autre, comme dans Cartano. Cliquez sur un élément pour lire sa fiche et voir ses relations ; les identifiants (CAP, OBJ, DP, AC, TS, PN) sont ceux de l'export.</p>
   <div class="viewer t sub rv" id="av">
@@ -834,7 +847,7 @@ ul.tree small{display:block;color:var(--muted);font-size:.76rem}
 
 <!-- ================= DONNÉES ================= -->
 <section id="donnees"><div class="wrap">
-  <div class="kicker rv">07 · Modèles de données <span class="tag prop">Proposition</span></div>
+  <div class="kicker rv">05 · Modèles de données <span class="tag prop">Proposition</span></div>
   <h2 class="rv">Des objets métier aux tables, du conceptuel au physique.</h2>
   <p class="lead rv">Le modèle conceptuel part des objets métier de l'architecture métier (notation entité-association, Merise). Il se décline en modèle logique relationnel, puis en modèle physique organisé en couches Bronze, Silver et Gold.</p>
   <div class="viewer t sub rv" id="dm" data-tab="modeles|Modèles">
@@ -853,7 +866,7 @@ ul.tree small{display:block;color:var(--muted);font-size:.76rem}
 
 <!-- ================= QUESTIONS ================= -->
 <section id="questions" class="band"><div class="wrap">
-  <div class="kicker rv">08 · Questions pour la revue du sprint 1</div>
+  <div class="kicker rv">06 · Questions pour la revue du sprint 1</div>
   <h2 class="rv">Ce que le sujet laisse ouvert, et ce que nous supposons en attendant.</h2>
   <p class="lead rv">Le sujet demande de lister les questions restées sans réponse après lecture de la partie I et du dictionnaire du kit, pour les poser en revue. Le kit en a tranché trois ; les autres portent l'hypothèse retenue dans les modèles, à confirmer ou corriger.</p>
   <div class="chips rv" id="qchips"></div>
@@ -905,7 +918,7 @@ $('#caps').innerHTML='<tr><th>Capacité métier</th><th>Domaine</th><th>Objets m
 M.domains.forEach(d=>$('#doms').append(h('div',{class:'card dom'},`<h4>${d[1]}</h4><p style="font-size:.8rem;color:var(--muted)">Propriétaire : ${d[2]}</p>`+M.dps.filter(p=>p[2]==d[0]).map(p=>`<span class="dp"><b>${p[1]}</b><small>${p[4].join(', ')} · ${p[5]}</small></span>`).join(''))));
 $('#clas').innerHTML='<tr><th>Donnée</th><th>Confidentialité</th><th>Critique</th><th>Raison</th></tr>'+CLAS.map(c=>`<tr><td>${c[0]}</td><td><span class="lvl ${c[1]}">${c[2]}</span></td><td>${c[3]}</td><td>${c[4]}</td></tr>`).join('')+'<tr><td colspan="4" style="font-size:.8rem;color:var(--muted)">* donné à titre indicatif par le sujet : à justifier ligne par ligne au sprint 3.</td></tr>';
 REPS.forEach(r=>$('#reps').append(h('div',{class:'card rep'},`<div class="hd"><span class="code">${r[0]}</span><span class="lvl ${r[4]}">${r[5]}</span></div><h4>${r[1]}</h4><q>${r[2]}</q><small>Pour : ${r[3]}</small><small>Étapes : ${r[7]} · <b>${r[6]}</b></small>`)));
-$('#coh').innerHTML='<tr><th>Étape</th><th>Applications AS-IS</th><th>Rapports consommateurs</th><th>Data product cible</th><th>Processus</th></tr>'+COH.map(c=>`<tr><td><b>${c[0]}</b></td><td>${c[1]}</td><td>${c[2]}</td><td>${c[3]}</td><td><a href="#processus" onclick="V.set('${c[4]}')" class="code" style="color:var(--tobe)">${c[4]} →</a></td></tr>`).join('');
+$('#coh').innerHTML='<tr><th>Étape</th><th>Applications AS-IS</th><th>Rapports consommateurs</th><th>Data product cible</th><th>Processus</th></tr>'+COH.map(c=>`<tr><td><b>${c[0]}</b></td><td>${c[1]}</td><td>${c[2]}</td><td>${c[3]}</td><td><a href="#tobe-bpmn" onclick="V.set('${c[4]}','tobe')" class="code" style="color:var(--tobe)">${c[4]} →</a></td></tr>`).join('');
 
 /* ---------- SI : applications et flux ---------- */
 (function(){const NS='http://www.w3.org/2000/svg',s=document.createElementNS(NS,'svg');s.setAttribute('viewBox','0 0 1440 440');
@@ -1020,7 +1033,7 @@ P3:`<h3>Six motifs de surveillance, liste fermée</h3><div class="scroll"><table
 P5:`<div class="card"><h4>« Que disions-nous à nos clients en mars ? »</h4><p>Le 2 mars 2026, la fiche R1 de la Banque Mélèze indique un taux de défaut Corporate de 4,7 %. Fin avril, un code de catégorie mal traduit est découvert ; la valeur corrigée, 5,5 %, part dans l'envoi du 4 mai. En juin, un client demande pourquoi il n'a pas été alerté en mars. Sans historique, la seule valeur disponible est 5,5 %. Avec R4, EuroBench répond : « au 2 mars, la valeur dont nous disposions était 4,7 % ».</p></div>`};
 
 $('#coretiles').innerHTML=PROCS.slice(1,6).map(p=>`<div class="tile core" data-p="${p.id}"><span class="code">${p.id}</span><b>${p.name}</b><small>${p.sub}</small></div>`).join('');
-$$('[data-p]').forEach(t=>t.onclick=()=>{V.set(t.dataset.p);location.hash='processus'});
+$$('[data-p]').forEach(t=>t.onclick=()=>{V.set(t.dataset.p,'tobe');EB.go('tobe','bpmn')});
 
 const V=(function(){
  const NS='http://www.w3.org/2000/svg',HW=128,LH=132,CW=166,PX=76,CY=52;
@@ -1333,8 +1346,7 @@ const TEAM={"review_h": 0.25, "capacity_h": 36, "members": {"Q": {"nom": "Quenti
 (function(){
 const T=TEAM,esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-let swapped=store.get('eb-swap',false),done=store.get('eb-done',null),cur=null;
-if(!done){done={};T.tasks.forEach(t=>{if(t.statut=='fait')done[t.id]=1})}
+let swapped=store.get('eb-swap',false),done={},cur=null;
 const person=r=>T.members[swapped?(r=='Q'?'L':'Q'):r];          // rôle → personne
 const other=r=>r=='Q'?'L':'Q';
 const cls=r=>person(r)===T.members.Q?'pq':'pl';                  // couleur de la personne
@@ -1354,16 +1366,31 @@ async function saveFile(name,blob){
 
 function load(r){const p={prod:0,rev:0,done:0};T.tasks.forEach(t=>{if(t.coop){p.prod+=t.h/2;if(done[t.id])p.done+=t.h/2}else if(t.owner==r){p.prod+=t.h;if(done[t.id])p.done+=t.h}else p.rev+=T.review_h});return p}
 let hl=store.get('eb-hl',''),only=store.get('eb-only',''),stepsDone=store.get('eb-steps',{});
+/* une tâche est validée uniquement si toutes ses sous-étapes sont cochées (les tâches déjà faites partent cochées) */
+T.tasks.forEach(t=>{if(t.statut=='fait'&&!stepsDone[t.id])stepsDone[t.id]=t.steps.map(()=>true)});
+const sync=()=>{T.tasks.forEach(t=>{const a=stepsDone[t.id]||[];if(t.steps.length&&t.steps.every((_,i)=>a[i]))done[t.id]=1;else delete done[t.id]})};
+sync();
 const fill=x=>x.replace('{Q}',person('Q').court).replace('{L}',person('L').court);
 const MS=t=>`${t.sprint}.${t.ms}`;
 const miniOf=t=>T.mini.find(m=>m[0]==t.sprint&&m[1]==t.ms);
 const stepState=t=>{const a=stepsDone[t.id]||[];return t.steps.map((_,i)=>!!a[i])};
+/* ce qu'il y a à faire maintenant : les tâches non validées du premier mini-sprint encore ouvert pour cette personne */
+function todo(r){
+  const mine=T.tasks.filter(t=>t.coop||t.owner==r),m=T.mini.find(m=>mine.some(t=>t.sprint==m[0]&&t.ms==m[1]&&!done[t.id]));
+  if(!m)return `<div class="todo"><h4>À faire maintenant</h4><p class="tdh">Toutes les tâches sont validées.</p></div>`;
+  const ts=mine.filter(t=>t.sprint==m[0]&&t.ms==m[1]&&!done[t.id]),me=person(r).court;
+  const next=t=>{const st=stepState(t),k=t.steps.map((x,i)=>[i,fill(x)]).filter(([i,x])=>!st[i]&&(!t.coop||x.startsWith(me)||x.startsWith('En équipe')))[0]||t.steps.map((x,i)=>[i,fill(x)]).find(([i])=>!st[i]);return k?k[1]:''};
+  return `<div class="todo"><h4>À faire maintenant</h4>
+    <p class="tdh"><span class="msid">mini-sprint ${m[0]}.${m[1]}</span> <b>${esc(m[2])}</b> · ${ts.length} tâche${ts.length>1?'s':''} à valider</p>
+    ${ts.map(t=>`<div class="tdi">${chip(t,t.coop?'':r)}<p class="nxt"><span>Prochaine sous-étape</span>${esc(next(t))}</p></div>`).join('')}
+    <p class="ehint">Cliquez sur une bulle pour dérouler son circuit et cocher ses sous-étapes. Elle est validée quand tout est coché.</p></div>`}
 function duo(){
   $('#duo').innerHTML=['Q','L'].map(r=>{const m=person(r),p=load(r),tot=p.prod+p.rev,cap=T.capacity_h;
     return `<div class="mcard ${cls(r)}"><div class="av">${m.init}</div><div class="mi"><h3>${m.nom}</h3>
       <p><b>Fil métier.</b> ${T.members[r].fil}</p><p><b>Plateforme.</b> responsable de ${T.members[r].plateforme}</p>
-      <div class="cap"><div class="capbar"><i class="pr" style="width:${p.prod/cap*100}%"></i><i class="rv2" style="width:${p.rev/cap*100}%"></i><i class="dn" style="width:${p.done/cap*100}%"></i></div>
+      ${todo(r)}<div class="cap"><div class="capbar"><i class="pr" style="width:${p.prod/cap*100}%"></i><i class="rv2" style="width:${p.rev/cap*100}%"></i><i class="dn" style="width:${p.done/cap*100}%"></i></div>
       <div class="capl"><span><i class="k pr"></i>réalisation ${H(p.prod)}</span><span><i class="k rv2"></i>relectures ${H(p.rev)}</span><span><b>${H(tot)}</b> sur ${cap} h</span><span><i class="k dn"></i>fait ${H(p.done)}</span></div></div></div></div>`}).join('');
+  $$('#duo .chip').forEach(c=>c.onclick=()=>pick(c.dataset.id,true));
   $('#swaptxt').textContent=`${T.members.Q.court} : ${person('Q')===T.members.Q?'Databricks':'Snowflake'} · ${T.members.L.court} : ${person('L')===T.members.L?'Snowflake':'Databricks'}`;
 }
 function rules(){
@@ -1455,9 +1482,9 @@ function pick(id,go){cur=byId[id];pipe(cur);steps();
   if(go){const cs=$('#eq-circuit');cs.hidden=false;if(window.EB)EB.go('equipe');play();cs.scrollIntoView({block:'start'})}}
 function steps(){const t=cur,m=miniOf(t),st=stepState(t);
   $('#pipems').innerHTML=`<span class="msid">mini-sprint ${MS(t)}</span> <b>${esc(m[2])}</b> · ${esc(m[3])} <a href="#equipe" class="msgo">voir le mini-sprint</a>`;
-  $('#psteps').innerHTML=`<h5>Sous-étapes de ${t.id}</h5><ol>${t.steps.map((x,i)=>`<li><label><input type="checkbox" data-i="${i}" ${st[i]?'checked':''}> <span>${esc(fill(x))}</span></label></li>`).join('')}</ol>`;
+  $('#psteps').innerHTML=`<h5>Sous-étapes de ${t.id} · ${st.filter(Boolean).length}/${t.steps.length} · <b class="vs ${done[t.id]?'ok':''}">${done[t.id]?'tâche validée':'validée quand tout est coché'}</b></h5><ol>${t.steps.map((x,i)=>`<li><label><input type="checkbox" data-i="${i}" ${st[i]?'checked':''}> <span>${esc(fill(x))}</span></label></li>`).join('')}</ol>`;
   $$('#psteps input').forEach(c=>c.onchange=()=>{const a=stepState(t);a[+c.dataset.i]=c.checked;stepsDone[t.id]=a;store.set('eb-steps',stepsDone);
-    if(a.every(Boolean)&&!done[t.id]){done[t.id]=1;store.set('eb-done',done)}refresh()})}
+    sync();refresh()})}
 let cadT=0;
 function cadence(){
   $('#cadence').innerHTML=T.cadence.map((c,i)=>`<div class="cph" data-i="${i}"><span class="cpn">${i+1}</span><b>${c[1]}</b><small>${c[2]}</small><p>${esc(c[3])}</p></div>`).join('<div class="carr" aria-hidden="true">→</div>')+'<div class="cloop" aria-hidden="true">↺ mini-sprint suivant</div>';
@@ -1494,7 +1521,8 @@ $('#pipems').addEventListener('click',e=>{const a=e.target.closest('.msgo');if(!
 /*@/TEAMJS*//*@ROUTER*/
 /* ================= NAVIGATION ENTRE LES PAGES ================= */
 (function(){
-const ORDER=['accueil','equipe','asis','tobe','carto','processus','archi','donnees','questions'];
+const ORDER=['accueil','equipe','asis','tobe','archi','donnees','questions'];
+const ALIAS={carto:'tobe-carte',processus:'tobe-bpmn'};
 const LABEL={};$$('.sidenav a').forEach(a=>LABEL[a.dataset.v]=a.textContent.replace(/^\d+/,'').trim());
 const views=ORDER.map(id=>document.getElementById(id)).filter(Boolean);
 /* sous-onglets : blocs marqués data-tab="slug|Libellé" */
@@ -1513,10 +1541,8 @@ views.forEach(sec=>{const i=ORDER.indexOf(sec.id),pv=ORDER[i-1],nx=ORDER[i+1];
 /* accueil : une carte par page */
 const CARDS=[
   ['equipe','Organisation',`Qui fait quoi, sprint par sprint, et le circuit de chaque tâche : Google Drive pour les documents, Git pour le code.`,`${TEAM.tasks.length} tâches · ≈ 34 h chacun`],
-  ['asis','Existant',`Le processus actuel, ses outils et ses irritants : dix étapes manuelles, huit applications, neuf flux.`,`15 à 20 jours ouvrés de délai`],
-  ['tobe','Cible',`Huit objectifs mesurables, l'architecture métier, les couches de données, la confidentialité et les rapports attendus.`,`${OBJS.length} objectifs · ${REPS.length} rapports`],
-  ['carto','Cible',`Les six processus reconstruits à partir des étapes, et la cohérence entre les vues.`,`6 processus`],
-  ['processus','Cible',`Les diagrammes BPMN animés, en AS-IS et en TO-BE, avec le détail de chaque activité.`,`${PROCS.length} diagrammes × 2 versions`],
+  ['asis','Existant',`Le processus actuel, ses outils et ses irritants : dix étapes manuelles, huit applications, neuf flux, et les diagrammes BPMN de l'existant.`,`15 à 20 jours ouvrés de délai`],
+  ['tobe','Cible',`Huit objectifs, les couches de données, la confidentialité, la carte des six processus cibles et leurs diagrammes BPMN animés.`,`${OBJS.length} objectifs · ${PROCS.length} processus · ${REPS.length} rapports`],
   ['archi','Cible',`Les vues ArchiMate métier, applicative, technique et physique, cliquables.`,`${VIEWS.length} vues ArchiMate`],
   ['donnees','Cible',`Le modèle conceptuel, le modèle logique et le modèle physique Bronze, Silver, Gold, vérifiés sur le kit.`,`${Object.keys(M.entities).length} entités · ${M.mpd.length} tables`],
   ['questions','Revue',`Les questions à poser en revue, avec l'hypothèse retenue en attendant, et l'export pour Cartano.`,`${M.questions.length} questions · ${M.questions.filter(q=>q[5]=='kit').length} tranchées par le kit`],
@@ -1526,12 +1552,13 @@ $('#homegrid').innerHTML=`<div class="hcards">${CARDS.map(c=>
 /* affichage de la page demandée dans l'adresse (#page ou #page-onglet) */
 let last='';
 function show(){
-  const h=decodeURIComponent(location.hash.slice(1));let v=h,t='';const k=h.indexOf('-');if(k>0){v=h.slice(0,k);t=h.slice(k+1)}
+  let h=decodeURIComponent(location.hash.slice(1));if(ALIAS[h])h=ALIAS[h];let v=h,t='';const k=h.indexOf('-');if(k>0){v=h.slice(0,k);t=h.slice(k+1)}
   if(!ORDER.includes(v)){v='accueil';t=''}
   const sec=document.getElementById(v);
   views.forEach(s=>s.hidden=s!==sec);
   if(sec._tabs){if(!sec._tabs.some(x=>x[0]==t))t=sec._tabs[0][0];
     $$('[data-tslug]',sec).forEach(el=>el.hidden=el.dataset.tslug!==t);
+    const slot=$('[data-viewer]',sec);if(slot&&!slot.hidden){const vb=$('#vbox');if(vb&&vb.parentNode!==slot){slot.append(vb)}if(vb)V.set(undefined,slot.dataset.viewer)}
     $$('.ptabs a',sec).forEach(a=>{const on=a.dataset.t===t;a.classList.toggle('on',on);a.setAttribute('aria-selected',on)})}
   $$('.sidenav a').forEach(a=>{const on=a.dataset.v===v;a.classList.toggle('on',on);if(on)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   const nav=$('.sidenav'),act=$('.sidenav a.on');if(nav&&act&&nav.scrollWidth>nav.clientWidth)nav.scrollLeft=act.offsetLeft-(nav.clientWidth-act.offsetWidth)/2;
